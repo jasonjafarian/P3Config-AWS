@@ -1,0 +1,1296 @@
+[ {
+  "id" : "ADVANTAGE_2017-G",
+  "created" : "2017-01-06T20:04:58.735Z",
+  "modified" : "2017-01-06T20:04:58.735Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/ADVANTAGE_2017",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "OS3-G-RS",
+  "created" : "2018-06-06T21:14:10.775Z",
+  "modified" : "2018-06-06T21:14:10.775Z",
+  "connector" : "lucid.jdbc",
+  "type" : "jdbc",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "collection" : "p3-G-RS",
+    "url" : "jdbc:redshift://rs-data.prod-lde.bsp.gsa.gov:5439/edw?Auth_mech=REQUIRE?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "password" : "4gXPbfhW",
+    "driver" : "com.amazon.redshift.jdbc.Driver",
+    "verify_access" : false,
+    "fetch_size" : 1000,
+    "max_docs" : -1,
+    "clean_in_full_import_mode" : true,
+    "sql_select_statement" : "select * from edw.p3_extract.os3_g;",
+    "username" : "p3_serviceuser"
+  }
+}, {
+  "id" : "ADVANTAGE_2015-G",
+  "created" : "2017-01-06T20:04:58.735Z",
+  "modified" : "2017-01-06T20:04:58.735Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/ADVANTAGE_2015",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "ADVANTAGE_2016-G",
+  "created" : "2017-01-06T20:04:58.735Z",
+  "modified" : "2017-01-06T20:04:58.735Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/ADVANTAGE_2016",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "ITS_RA-G",
+  "created" : "2017-01-06T20:09:28.849Z",
+  "modified" : "2017-01-06T20:09:28.849Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/ITS_RA",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "OASIS-G-RS",
+  "created" : "2018-06-06T21:14:10.775Z",
+  "modified" : "2018-06-06T21:14:10.775Z",
+  "connector" : "lucid.jdbc",
+  "type" : "jdbc",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "collection" : "p3-G-RS",
+    "url" : "jdbc:redshift://rs-data.prod-lde.bsp.gsa.gov:5439/edw?Auth_mech=REQUIRE?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "password" : "4gXPbfhW",
+    "driver" : "com.amazon.redshift.jdbc.Driver",
+    "verify_access" : false,
+    "fetch_size" : 1000,
+    "max_docs" : -1,
+    "clean_in_full_import_mode" : true,
+    "sql_select_statement" : "select * from edw.p3_extract.oasis_g;",
+    "username" : "p3_serviceuser"
+  }
+}, {
+  "id" : "GWAC-G-RS",
+  "created" : "2018-06-06T22:17:36.405Z",
+  "modified" : "2018-06-06T22:17:36.405Z",
+  "connector" : "lucid.jdbc",
+  "type" : "jdbc",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "collection" : "p3-G-RS",
+    "url" : "jdbc:redshift://rs-data.prod-lde.bsp.gsa.gov:5439/edw?Auth_mech=REQUIRE?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "password" : "4gXPbfhW",
+    "driver" : "com.amazon.redshift.jdbc.Driver",
+    "verify_access" : false,
+    "fetch_size" : 1000,
+    "max_docs" : -1,
+    "clean_in_full_import_mode" : true,
+    "sql_select_statement" : "select * from edw.p3_extract.gwac_g;",
+    "username" : "p3_serviceuser"
+  }
+}, {
+  "id" : "MRO-G-RS",
+  "created" : "2018-06-06T21:14:10.775Z",
+  "modified" : "2018-06-06T21:14:10.775Z",
+  "connector" : "lucid.jdbc",
+  "type" : "jdbc",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "collection" : "p3-G-RS",
+    "url" : "jdbc:redshift://rs-data.prod-lde.bsp.gsa.gov:5439/edw?Auth_mech=REQUIRE?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "password" : "4gXPbfhW",
+    "driver" : "com.amazon.redshift.jdbc.Driver",
+    "verify_access" : false,
+    "fetch_size" : 1000,
+    "max_docs" : -1,
+    "clean_in_full_import_mode" : true,
+    "sql_select_statement" : "select * from edw.p3_extract.mro_g;",
+    "username" : "p3_serviceuser"
+  }
+}, {
+  "id" : "DOD_ESI-G",
+  "created" : "2017-01-06T20:09:28.487Z",
+  "modified" : "2017-01-06T20:09:28.487Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/DOD_ESI",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "OASIS-G",
+  "created" : "2017-01-06T20:09:29.270Z",
+  "modified" : "2017-01-06T20:09:29.270Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/OASIS",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "PM-G",
+  "created" : "2017-01-06T20:09:29.581Z",
+  "modified" : "2017-01-06T20:09:29.581Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/PM",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "NITCP-G",
+  "created" : "2017-01-06T20:09:29.156Z",
+  "modified" : "2017-01-06T20:09:29.156Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/NITCP",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "ADVANTAGE-G-RS",
+  "created" : "2018-06-06T21:12:47.452Z",
+  "modified" : "2018-06-06T21:12:47.452Z",
+  "connector" : "lucid.jdbc",
+  "type" : "jdbc",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "collection" : "p3-G-RS",
+    "url" : "jdbc:redshift://rs-data.prod-lde.bsp.gsa.gov:5439/edw?Auth_mech=REQUIRE?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "password" : "4gXPbfhW",
+    "driver" : "com.amazon.redshift.jdbc.Driver",
+    "verify_access" : false,
+    "fetch_size" : 1000,
+    "max_docs" : -1,
+    "clean_in_full_import_mode" : true,
+    "sql_select_statement" : "select * from edw.p3_extract.advantage_g;",
+    "username" : "p3_serviceuser"
+  }
+}, {
+  "id" : "ADVANTAGE_2013-G",
+  "created" : "2017-01-06T20:04:58.735Z",
+  "modified" : "2017-01-06T20:04:58.735Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/ADVANTAGE_2013",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "GWAC-G",
+  "created" : "2017-01-06T20:09:28.719Z",
+  "modified" : "2017-01-06T20:09:28.719Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/GWAC",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "ADVANTAGE_2014-G",
+  "created" : "2017-01-06T20:04:58.735Z",
+  "modified" : "2017-01-06T20:04:58.735Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/ADVANTAGE_2014",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "TRANSCOM-G",
+  "created" : "2017-01-06T20:09:29.706Z",
+  "modified" : "2017-01-06T20:09:29.706Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/TRANSCOM",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "PM-G-RS",
+  "created" : "2018-06-06T21:14:10.775Z",
+  "modified" : "2018-06-06T21:14:10.775Z",
+  "connector" : "lucid.jdbc",
+  "type" : "jdbc",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "collection" : "p3-G-RS",
+    "url" : "jdbc:redshift://rs-data.prod-lde.bsp.gsa.gov:5439/edw?Auth_mech=REQUIRE?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "password" : "4gXPbfhW",
+    "driver" : "com.amazon.redshift.jdbc.Driver",
+    "verify_access" : false,
+    "fetch_size" : 1000,
+    "max_docs" : -1,
+    "clean_in_full_import_mode" : true,
+    "sql_select_statement" : "select * from edw.p3_extract.pm_g;",
+    "username" : "p3_serviceuser"
+  }
+}, {
+  "id" : "ARMY_CHESS-G",
+  "created" : "2017-01-06T21:35:18.009Z",
+  "modified" : "2017-01-06T21:35:18.009Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/ARMY_CHESS",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "MRO-G",
+  "created" : "2017-01-09T15:50:51.014Z",
+  "modified" : "2017-01-09T15:50:51.014Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/MRO",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "JANSAN-G-RS",
+  "created" : "2018-06-06T21:14:10.775Z",
+  "modified" : "2018-06-06T21:14:10.775Z",
+  "connector" : "lucid.jdbc",
+  "type" : "jdbc",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "collection" : "p3-G-RS",
+    "url" : "jdbc:redshift://rs-data.prod-lde.bsp.gsa.gov:5439/edw?Auth_mech=REQUIRE?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "password" : "4gXPbfhW",
+    "driver" : "com.amazon.redshift.jdbc.Driver",
+    "verify_access" : false,
+    "fetch_size" : 1000,
+    "max_docs" : -1,
+    "clean_in_full_import_mode" : true,
+    "sql_select_statement" : "select * from edw.p3_extract.jansan_g;",
+    "username" : "p3_serviceuser"
+  }
+}, {
+  "id" : "GSS-G",
+  "created" : "2017-01-06T20:09:28.593Z",
+  "modified" : "2017-01-06T20:09:28.593Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/GSS",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "DDS3_SERVICE-G",
+  "created" : "2017-01-06T20:09:28.487Z",
+  "modified" : "2017-01-06T20:09:28.487Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/DDS3_SERVICE",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "JANSAN-G",
+  "created" : "2017-01-06T20:09:28.944Z",
+  "modified" : "2017-01-06T20:09:28.944Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/JANSAN",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "DDS3_2017-G",
+  "created" : "2017-01-06T21:35:18.102Z",
+  "modified" : "2017-01-06T21:35:18.102Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : -1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/DDS3_2017",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "OS3-G",
+  "created" : "2017-01-09T13:55:04.013Z",
+  "modified" : "2017-01-09T13:55:04.013Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/OS3",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "DDS3_2016-G",
+  "created" : "2017-01-06T21:35:18.102Z",
+  "modified" : "2017-01-06T21:35:18.102Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : -1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/DDS3_2016",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "OS2-G",
+  "created" : "2017-01-06T20:09:29.364Z",
+  "modified" : "2017-01-06T20:09:29.364Z",
+  "connector" : "lucid.fs",
+  "type" : "s3",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "exclude_paths" : [ ],
+    "index_directories" : false,
+    "crawl_depth" : 1,
+    "maximum_connections" : 1000,
+    "max_bytes" : 16106127360,
+    "collection" : "p3-G",
+    "splitter" : {
+      "min_size" : 1,
+      "splitters" : "csv",
+      "csv_delimiter" : ",",
+      "csv_format" : "default",
+      "header_line" : true
+    },
+    "url" : "s3://helix-east-acqit-prod-data/home/P3/staging/OS2",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "crawl_item_timeout" : 6000000,
+    "max_threads" : 5,
+    "verify_access" : false,
+    "add_failed_docs" : false,
+    "bounds" : "tree",
+    "max_docs" : -1
+  }
+}, {
+  "id" : "GSS-G-RS",
+  "created" : "2018-06-06T21:14:10.775Z",
+  "modified" : "2018-06-06T21:14:10.775Z",
+  "connector" : "lucid.jdbc",
+  "type" : "jdbc",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "collection" : "p3-G-RS",
+    "url" : "jdbc:redshift://rs-data.prod-lde.bsp.gsa.gov:5439/edw?Auth_mech=REQUIRE?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "password" : "4gXPbfhW",
+    "driver" : "com.amazon.redshift.jdbc.Driver",
+    "verify_access" : false,
+    "fetch_size" : 1000,
+    "max_docs" : -1,
+    "clean_in_full_import_mode" : true,
+    "sql_select_statement" : "select * from edw.p3_extract.gss_g;",
+    "username" : "p3_serviceuser"
+  }
+}, {
+  "id" : "ITS_RA-G-RS",
+  "created" : "2018-06-06T21:14:10.775Z",
+  "modified" : "2018-06-06T21:14:10.775Z",
+  "connector" : "lucid.jdbc",
+  "type" : "jdbc",
+  "pipeline" : "P3-G-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "collection" : "p3-G-RS",
+    "url" : "jdbc:redshift://rs-data.prod-lde.bsp.gsa.gov:5439/edw?Auth_mech=REQUIRE?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "password" : "4gXPbfhW",
+    "driver" : "com.amazon.redshift.jdbc.Driver",
+    "verify_access" : false,
+    "fetch_size" : 1000,
+    "max_docs" : -1,
+    "clean_in_full_import_mode" : true,
+    "sql_select_statement" : "select * from edw.p3_extract.its_ra_g;",
+    "username" : "p3_serviceuser"
+  }
+}, {
+  "id" : "NORMALIZED_BIC_DATA-G-RS",
+  "created" : "2018-06-06T21:14:10.775Z",
+  "modified" : "2018-06-06T21:14:10.775Z",
+  "connector" : "lucid.jdbc",
+  "type" : "jdbc",
+  "pipeline" : "P3-G-RS-pipeline",
+  "properties" : {
+    "commit_on_finish" : true,
+    "collection" : "p3-G-RS",
+    "url" : "jdbc:redshift://rs-data.prod-lde.bsp.gsa.gov:5439/edw?Auth_mech=REQUIRE?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory",
+    "initial_mapping" : {
+      "id" : "FromMap",
+      "mappings" : [ {
+        "source" : "fetch_time",
+        "target" : "fetch_time_dt",
+        "operation" : "move"
+      }, {
+        "source" : "ds:description",
+        "target" : "description",
+        "operation" : "move"
+      } ],
+      "skip" : false,
+      "label" : "field-mapping",
+      "type" : "field-mapping"
+    },
+    "password" : "4gXPbfhW",
+    "driver" : "com.amazon.redshift.jdbc.Driver",
+    "verify_access" : false,
+    "fetch_size" : 1000,
+    "max_docs" : -1,
+    "clean_in_full_import_mode" : true,
+    "sql_select_statement" : "select * from edw.gwcm.normalized_bic_data;",
+    "username" : "p3_serviceuser"
+  }
+} ]

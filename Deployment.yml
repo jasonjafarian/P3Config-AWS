@@ -1,0 +1,267 @@
+---
+
+#Apache Variables
+#Valid instance size, see AWS documentation for options
+apache_instance_size: t2.medium
+
+#Whether or not Apache should be deployed across multiple availability zones
+#Multiple availability zones provides higher availibity at a higher cost
+apache_multi_az: true
+
+#Maximum number of instances to run for Apache
+apache_max_instances: 4
+
+#Minimum number of instances to run for Apache
+apache_min_instances: 1
+
+#List of Alarms to set on the Apache instances to trigger scaling actions
+#Reference AWS Cloudwatch documentation or request help from Helix BSP DevOps
+#when changing these values from the defaults.
+#These defaults will add instances if the Apache CPU average is greater than 90% for 10 minutes
+#and remove an instance if the CPU % is less than 70 for 10 minutes.
+apache_asg_alarms:
+  - name: ApacheHighCPU #Unique name of the alarm
+    description: "Scale-up if CPU > 90% for 10 minutes" #Description of the alarm
+    metric: CPUUtilization #CloudWatch metric to base the alarm on
+    #namespace: AWS/EC2 #CloudWatch Namespace.  Default is AWS/EC2
+    #statistic: average #CloudWatch statistic to monitor.  Default is Average
+    #period: 300 #Time in seconds to sample.  Default is 300
+    #eval_periods: #Number of periods to evaluate before triggering the alarm.  Default is 2
+    threshold: 90 #Threshold to trigger the alarm
+    policy: ApacheScaleUpPolicy #Policy to invoke.  ApacheScaleUpPolicy adds an instance, ApacheScaleDownPolicy removes an instance
+    comparison_operator: GreaterThanThreshold #Valid cloudwatch comparison operator 
+  - name: ApacheLowCPU
+    description: "Scale-down if CPU <70% for 10 minutes"
+    metric: CPUUtilization
+    threshold: 70
+    policy: ApacheScaleDownPolicy
+    comparison_operator: LessThanThreshold
+
+
+#Number of seconds to wait before performing health checks, in seconds.
+#This must allow for all application content to be successfully setup and configured 
+apache_asg_grace_period: 1200
+
+apache_lb_resource_name: ApacheNS
+
+#Optional list of archives to retrieve and deploy
+#Archives can be tar, zip or tgz
+#Archives will be expanded into <docroot>/<path>/
+apache_content_files:
+  - https://artifactory.helix.gsa.gov/artifactory/ART-010-GP-P3-Generic/{{app_environment}}/{{app_version}}/apache_content.tar.gz
+
+#JBoss Variables
+#Valid instance size, see AWS documentation for options
+#jboss_instance_size: m3.medium
+jboss_instance_size: m4.large
+
+#Whether or not JBoss should be deployed across multiple availability zones
+#Multiple availability zones provides higher availibity at a higher cost
+jboss_multi_az: true
+
+#Maximum number of instances to run for JBoss
+jboss_max_instances: 4
+
+#Maximum number of instances to run for JBoss
+jboss_min_instances: 1
+
+##  Customer urls's for application deployment
+# cust_urls: ["https://s3.amazonaws.com/s3-helix-ama/Environment.war"]
+cust_urls: ["http://artifactory.helix.gsa.gov/artifactory/ART-010-GP-P3-Generic/{{app_environment}}/{{app_version}}/gui.war"]
+
+#The path for the ProxyPass and ProxyPassReverse  (Defaults to root)
+jboss_proxy_path: /gui/
+jboss_target_path: /gui/
+
+#List of Alarms to set on the JBoss instances to trigger scaling actions
+#Reference AWS Cloudwatch documentation or request help from Helix BSP DevOps
+#when changing these values from the defaults.
+#These defaults will add instances if the JBoss CPU average is greater than 90% for 10 minutes
+#and remove an instance if the CPU % is less than 70 for 10 minutes.
+jboss_asg_alarms:
+  - name: JBossHighCPU #Unique name of the alarm
+    description: "Scale-up if CPU > 90% for 10 minutes" #Description of the alarm
+    metric: CPUUtilization #CloudWatch metric to base the alarm on
+    #namespace: AWS/EC2 #CloudWatch Namespace.  Default is AWS/EC2
+    #statistic: average #CloudWatch statistic to monitor.  Default is Average
+    #period: 300 #Time in seconds to sample.  Default is 300
+    #eval_periods: #Number of periods to evaluate before triggering the alarm.  Default is 2
+    threshold: 90 #Threshold to trigger the alarm
+    policy: JBossScaleUpPolicy #Policy to invoke.  JBossScaleUpPolicy adds an instance, JBossScaleDownPolicy removes an instance
+    comparison_operator: GreaterThanThreshold #Valid cloudwatch comparison operator 
+  - name: JBossLowCPU
+    description: "Scale-down if CPU <70% for 10 minutes"
+    metric: CPUUtilization
+    threshold: 70
+    policy: JBossScaleDownPolicy
+    comparison_operator: LessThanThreshold
+
+
+#Number of seconds to wait before performing health checks, in seconds.
+#This must allow for all application content to be successfully setup and configured 
+jboss_asg_grace_period: 1200
+
+#Protocol and page to check on the ELB for health.  This page must return an HTTP 200 
+#status code or the instance will be removed.
+jboss_elb_health_check_target: HTTPS:8443/gui/
+
+#Name of the ELB SSL Cert to install.  Must match a value from the ssl_certs list
+jboss_elb_ssl_cert_name: JBoss-elb-cert
+
+#Number of checks in a row that must pass for a server to be healthy
+#Default: 3
+#jboss_elb_healthy_threshold: 3
+
+#Number of checks in a row that must fail for a server to be unhealthy
+#Default: 5
+#jboss_elb_unhealthy_threshold: 5
+
+#Interval, in seconds, to perform health checks
+#A higher value will result in more timely removals of bad servers, 
+#but will generatemore traffic to the server.
+#Default: 30
+#jboss_elb_health_interval: 30
+
+#Timeout on the health check HTTP request
+#Default: 5
+#jboss_elb_health_timeout: 5
+
+#Whether or not connection draining should be enabled
+#If set to true, the ELB will allow sessions to drain before removing an instance
+#Default: true
+#jboss_elb_connection_draining: true
+
+#Length of time to allow sessions to terminate before removing instances
+#Only used if jboss_elb_connection_draining is true
+#Default: 45
+#jboss_elb_connection_draining_timeout: 45
+
+#Type of session stickiness to use.  Valid values are elb and app.
+#If elb is specified, a ELB generated cookie is used.
+#If app is specified, the application must provide a cookie to track sessions.
+#jboss_elb_stickiness: elb
+
+#Expiration on the ELB stickiness cookie.  Only used if jboss_elb_stickiness
+#is elb 
+#Default is 60
+#jboss_elb_stickiness_expiration: 60
+
+#Name of the application provided cookie that identifies sessions
+#Only used if jboss_elb_stickiness is app
+#jboss_elb_stickiness_cookie_name: mycookie
+
+## Default sizes and number of iterations for jboss logs
+jboss_max_log_size: 1GB
+jboss_max_log_index: 5
+
+## Jboss Instanve JVM Settings
+jboss_heap_mem_min: 2048
+jboss_heap_mem_max: 2048
+jboss_heap_max_perm: 256
+
+##  Default log level for anything not covered specifically
+jboss_default_log_level: INFO
+
+##  Application team specific log setup
+#app_jboss_log_config: 
+# - category: gov.gsa
+#   level: INFO
+# - category: helloworld
+#   level: WARN
+
+#Variables for Lucid Works
+zookeeper_instance_size: m4.large
+solr_instance_size: r4.8xlarge
+
+solr_disk_size: 200
+
+lucidworks_home_dir: /opt/lucidworks
+lucidworks_indexes_dir: /indexes
+solr_src_dir: "{{lucidworks_home_dir}}"
+
+lucidworks_ssl_enabled: true
+#Solr_elb_health_check_target: p3-G/admin/ping
+
+api_port: 8765
+api_stop_port: 7765
+api_stop_key: fusion
+api_java_options: "(-Xmx10g -Xms10g -Xss256k -XX:MaxPermSize=256m -Dapple.awt.UIElement=true)"
+
+connectors_port: 8984
+connectors_stop_port: 7984
+connectors_stop_key: fusion
+connectors_java_options: "(-Xmx75g -Xms75g -Xss256k -XX:MaxPermSize=256m -Dapple.awt.UIElement=true)"
+
+solr_port: 8983
+solr_stop_port: 7983
+solr_stop_key: fusion
+solr_java_options: "(-Xmx50g -Xms50g -Xss256k -Dapple.awt.UIElement=true -Ddisable.configEdit=true)"
+
+ui_port: 8764
+ui_stop_port: 7764
+ui_stop_key: fusion
+ui_java_options: "(-Xmx2g -Xms2g -XX:MaxPermSize=256m -Dapple.awt.UIElement=true)"
+
+spark_master_port: 8766
+spark_master_ui_port: 8767
+spark_master_java_options: "(-Xmx512m -Xms512m -XX:MaxPermSize=128m -Dapple.awt.UIElement=true)"
+
+spark_job_server_port: 8768
+
+spark_worker_port: 8769
+spark_worker_ui_port: 8770
+spark_worker_java_options: "(-Xmx1g -Xms1g -XX:MaxPermSize=256m -Dapple.awt.UIElement=true)"
+
+#TODO for now, don't allow these to be overridden
+#gc_log_opts: "(-verbose:gc -XX:+PrintHeapAtGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX :+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime)"
+#gc_tune: "(-XX:NewRatio=3 -XX:SurvivorRatio=4 -XX:TargetSurvivorRatio=90 -XX:MaxTenuringThreshold=8 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:ConcGCThreads=4 -XX:ParallelGCThreads=4 -XX:+CMSScavengeBeforeRemark -XX:PretenureSizeThreshold=64m -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=50 -XX:CMSMaxAbortablePrecleanTime=6000 -XX:+CMSParallelRemarkEnabled -XX:+ParallelRefProcEnabled)"
+
+#This is the user to own the install--note that lucidworks configs want this user by default
+lucidworks_user: lucidworks
+
+#Group that matches the user
+lucidworks_group: lucidworks
+
+#Variables for Zoo Keeper
+zookeeper_home_dir: /opt/zookeeper
+
+#Directory for zookeeper data, created relative to zookeeper home
+zookeeper_data_dir: data
+
+#User and group that own the install
+zookeeper_user: zookeeper
+zookeeper_group: zookeeper
+
+fusion_zk: "localhost:9983"
+fusion_solr_zk: "localhost:9983"
+
+#One or more solr config sets. THIS IS OPTIONAL, BUT IF USED, ALL ITEMS MUST BE PRESENT
+#config_set_url is a location which the stack will pull from automatically at startup
+#collection_name is the collection name to use for the corresponding config set
+#num_shards is the number of solr shards
+#replication_factor is the number of copies to make for each document
+solr_collections:
+  - config_set_url: https://artifactory.helix.gsa.gov/artifactory/ART-010-GP-P3-Generic/{{app_environment}}/{{app_version}}/p3_config_set.tar.gz
+    collection_name: p3-G
+    num_shards: 4
+    replication_factor: 2
+    max_shards_per_node: 8
+  - config_set_url: https://artifactory.helix.gsa.gov/artifactory/ART-010-GP-P3-Generic/{{app_environment}}/{{app_version}}/p3_config_set_RS.tar.gz
+    collection_name: p3-G-RS
+    num_shards: 4
+    replication_factor: 2
+    max_shards_per_node: 8
+
+#Import Fusion Configuration
+import_fusion_config: true
+fusion_user_role_config_url: https://artifactory.helix.gsa.gov/artifactory/ART-010-GP-P3-Generic/{{app_environment}}/{{app_version}}/lucid-apollo-admin-config-works.json
+fusion_index_pipeline_config_url: https://artifactory.helix.gsa.gov/artifactory/ART-010-GP-P3-Generic/{{app_environment}}/{{app_version}}/lucid-config-index-pipelines.json
+fusion_query_pipeline_config_url: https://artifactory.helix.gsa.gov/artifactory/ART-010-GP-P3-Generic/{{app_environment}}/{{app_version}}/lucid-config-query-pipelines.json
+fusion_datsources_config_url: https://artifactory.helix.gsa.gov/artifactory/ART-010-GP-P3-Generic/{{app_environment}}/{{app_version}}/lucid-config-datasources.json
+
+#List of drivers to be uploaded to LucidWorks
+lw_driver_map:
+# - url: https://artifactory.helix.gsa.gov/artifactory/ART-010-GP-P3-Generic/RedshiftJDBC42-1.2.10.1009.jar
+#  collection: p3-G
+  - url: https://artifactory.helix.gsa.gov/artifactory/ART-010-GP-P3-Generic/RedshiftJDBC42-1.2.10.1009.jar
+    collection: p3-G-RS

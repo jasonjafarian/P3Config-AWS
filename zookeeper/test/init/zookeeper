@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# chkconfig: 345 99 01
+
+. /etc/profile.d/localenv.sh
+RETVAL=0
+
+case "$1" in
+  start)
+    cd /opt/lucidworks/zookeeper-3.4.6/bin
+    ./zkServer.sh start
+
+    RETVAL=$?
+    if [ $RETVAL = 0 ]; then
+      echo "Zookeeper started ..."
+    else
+      echo "Zookeeper NOT started ..."
+    fi
+    ;;
+  stop)
+    cd /opt/lucidworks/zookeeper-3.4.6/bin
+    ./zkServer.sh stop
+
+    RETVAL=$?
+    if [ $RETVAL = 0 ]; then
+      echo "Zookeeper stopped ..."
+    else
+      echo "Zookeeper NOT stopped ..."
+    fi
+    ;;
+  restart)
+    $0 stop
+    $0 start
+    ;;
+  status)
+    solr=`ps -ef | grep "/opt/lucidworks/zookeeper" |grep -v "grep"`
+    if [ ! -z "${solr}" ]; then
+      echo "Zookeeper running ..."
+    else
+      echo "Zookeeper NOT running ..."
+    fi
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|status}"
+    exit 1
+    ;;
+esac
+exit $RETVAL
+

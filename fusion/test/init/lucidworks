@@ -1,0 +1,48 @@
+#!bin/sh
+
+# chkconfig: 345 99 01
+
+export JRE_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.79.x86_64
+RETVAL=0
+
+case "$1" in
+  start)
+    cd /opt/lucidworks/fusion/bin
+    ./fusion start
+
+    RETVAL=$?
+    if [ $RETVAL = 0 ]; then
+      echo "LucidWorks started ..."
+    else
+      echo "LucidWorks NOT started ..."
+    fi
+    ;;
+  stop)
+    cd /opt/lucidworks/fusion/bin
+    ./fusion stop
+
+    RETVAL=$?
+    if [ $RETVAL = 0 ]; then
+      echo "LucidWorks stopped ..."
+    else
+      echo "LucidWorks NOT stopped ..."
+    fi
+    ;;
+  restart)
+    $0 stop
+    $0 start
+    ;;
+  status)
+    solr=`ps -ef | grep "/opt/lucidworks/fusion/" |grep -v "grep"`
+    if [ ! -z "${solr}" ]; then
+      echo "LucidWorks running ..."
+    else
+      echo "LucidWorks NOT running ..."
+    fi
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|status}"
+    exit 1
+    ;;
+esac
+exit $RETVAL

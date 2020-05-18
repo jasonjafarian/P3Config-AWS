@@ -1,0 +1,11 @@
+[ {
+  "id" : "p3-search-pipeline",
+  "stages" : [ {
+    "type" : "solr-query",
+    "id" : "zaypsyvi",
+    "httpMethod" : "GET",
+    "skip" : false,
+    "label" : "solr-query",
+    "type" : "solr-query"
+  } ]
+} ]
